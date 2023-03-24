@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0uo7yqr" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.9.0-dev" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.1.0">
+  <bpmn:process id="Process_1" isExecutable="true">
+    <bpmn:serviceTask id="emptyTemplate" name="empty" zeebe:modelerTemplate="empty" />
+    <bpmn:serviceTask id="noTemplate" name="No Template" />
+    <bpmn:serviceTask id="hiddenTemplate" name="hidden" zeebe:modelerTemplate="hidden">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:output source="= body" target="response" />
+        </zeebe:ioMapping>
+        <zeebe:properties>
+          <zeebe:property name="camundaModeler:exampleOutputJson" value="{&#34;foo&#34;: &#34;bar&#34;}" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="visibleTemplate" name="visible" zeebe:modelerTemplate="visible">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:output source="= body" target="response" />
+        </zeebe:ioMapping>
+        <zeebe:properties>
+          <zeebe:property name="camundaModeler:exampleOutputJson" value="{}" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+      <bpmndi:BPMNShape id="Activity_1f0uz60_di" bpmnElement="emptyTemplate">
+        <dc:Bounds x="190" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1j9849k_di" bpmnElement="noTemplate">
+        <dc:Bounds x="190" y="20" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0f8cuev_di" bpmnElement="hiddenTemplate">
+        <dc:Bounds x="340" y="130" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1eoltc5_di" bpmnElement="visibleTemplate">
+        <dc:Bounds x="490" y="130" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
