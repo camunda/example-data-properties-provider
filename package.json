@@ -1,11 +1,54 @@
 {
-  "name": "bpmn-js-example-data-extension",
+  "name": "@bpmn-io/bpmn-js-json-data-provider",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "all": "run-s lint test",
+    "dev": "npm test -- --auto-watch --no-single-run",
+    "start": "cross-env SINGLE_START=true npm run dev",
+    "lint": "eslint .",
+    "test": "karma start"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "min-dash": "^4.0.0"
+  },
+  "files": [
+    "lib"
+  ],
+  "peerDependencies": {
+    "@bpmn-io/properties-panel": "*",
+    "@bpmn-io/variable-resolver": "*",
+    "bpmn-js": "*",
+    "bpmn-js-properties-panel": ">= 1"
+  },
+  "devDependencies": {
+    "@bpmn-io/element-template-chooser": "^1.0.0",
+    "@bpmn-io/properties-panel": "^1.6.1",
+    "@bpmn-io/variable-resolver": "^0.1.0",
+    "@testing-library/preact": "^3.2.3",
+    "camunda-bpmn-js-behaviors": "^0.5.0",
+    "chai": "^4.3.7",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.28.0",
+    "eslint-plugin-bpmn-io": "^0.16.0",
+    "karma": "^6.4.1",
+    "karma-chrome-launcher": "^3.1.1",
+    "karma-coverage": "^2.2.0",
+    "karma-debug-launcher": "^0.0.5",
+    "karma-env-preprocessor": "^0.1.1",
+    "karma-mocha": "^2.0.1",
+    "karma-sinon-chai": "^2.0.2",
+    "karma-webpack": "^5.0.0",
+    "min-dom": "^4.1.0",
+    "mocha": "^10.1.0",
+    "mocha-test-container-support": "^0.2.0",
+    "npm-run-all": "^4.1.5",
+    "puppeteer": "^19.7.5",
+    "raw-loader": "^4.0.2",
+    "webpack": "^5.75.0",
+    "zeebe-bpmn-moddle": "^0.18.0"
+  }
 }
