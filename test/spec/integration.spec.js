@@ -1,27 +1,30 @@
 import TestContainer from 'mocha-test-container-support';
 
 import {
+  query as domQuery
+} from 'min-dom';
+
+import {
   BpmnPropertiesPanelModule,
   BpmnPropertiesProviderModule,
   ZeebePropertiesProviderModule,
-  CloudElementTemplatesPropertiesProvider
+  CloudElementTemplatesPropertiesProviderModule
 } from 'bpmn-js-properties-panel';
 
 import ElementTemplateChooserModule from '@bpmn-io/element-template-chooser';
-
 import ZeebeBehaviorsModule from 'camunda-bpmn-js-behaviors/lib/camunda-cloud';
 import ZeebeModdle from 'zeebe-bpmn-moddle/resources/zeebe';
 
 import { ZeebeVariableResolverModule } from '@bpmn-io/variable-resolver';
-
 import VariableProviderModule from 'lib/';
+
+
+
 
 import Modeler from 'bpmn-js/lib/Modeler';
 
 import simpleXML from '../fixtures/simple.bpmn';
-
-// import elementTemplatesXML from '../fixtures/element-templates.bpmn';
-
+import elementTemplatesXML from '../fixtures/elementTemplates.bpmn';
 import elementTemplates from '../fixtures/templates.json';
 
 import { setBpmnJS, clearBpmnJS, insertCoreStyles, enableLogging, inject } from '../TestHelper';
@@ -112,13 +115,8 @@ describe('Integration', function() {
     const result = await createModeler(simpleXML,
       {
         additionalModules: [
-          ZeebeBehaviorsModule,
-          BpmnPropertiesPanelModule,
-          BpmnPropertiesProviderModule,
-          ZeebePropertiesProviderModule,
-          ZeebeVariableResolverModule,
-          VariableProviderModule,
-          CloudElementTemplatesPropertiesProvider,
+          ...defaultModules,
+          CloudElementTemplatesPropertiesProviderModule,
           ElementTemplateChooserModule
         ],
         elementTemplates
@@ -150,16 +148,65 @@ describe('Integration', function() {
   });
 
 
-  // describe('properties panel', function() {
+  describe('properties panel', function() {
 
-  //   beforeEach(() => createModeler(elementTemplatesXML, {
-  //     additionalModules: [
-  //       ...defaultModules,
-  //       CloudElementTemplatesPropertiesProvider
-  //     ],
-  //     elementTemplates
-  //   }));
+    beforeEach(() => createModeler(elementTemplatesXML, {
+      additionalModules: [
+        ...defaultModules,
+        CloudElementTemplatesPropertiesProviderModule
+      ],
+      elementTemplates
+    }));
 
-  // });
+
+    it('should display Group', inject(function(elementRegistry, selection) {
+
+      // given
+      const task = elementRegistry.get('noTemplate');
+
+      // when
+      selection.select(task);
+
+      // then
+      const group = domQuery('[data-group-id="group-additionalDataGroup"]', container);
+      expect(group).to.exist;
+
+      // should be last
+      expect(group.nextElementSibling).not.to.exist;
+    }));
+
+
+    it('should display group on applied template', inject(function(elementRegistry, selection) {
+
+      // given
+      const task = elementRegistry.get('emptyTemplate');
+
+      // when
+      selection.select(task);
+
+      // then
+      const group = domQuery('[data-group-id="group-additionalDataGroup"]', container);
+      expect(group).to.exist;
+
+      // should be last
+      expect(group.nextElementSibling).not.to.exist;
+    }));
+
+
+    // TODO(@marstamm): implement in a follow-up
+    it.skip('should NOT display group when template has binding', inject(function(elementRegistry, selection) {
+
+      // given
+      const task = elementRegistry.get('emptyTemplate');
+
+      // when
+      selection.select(task);
+
+      // then
+      const group = domQuery('[data-group-id="group-additionalDataGroup"]', container);
+      expect(group).not.to.exist;
+    }));
+
+  });
 
 });
