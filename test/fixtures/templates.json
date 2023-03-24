@@ -1,0 +1,64 @@
+[ 
+  {
+    "$schema": "https://unpkg.com/@camunda/zeebe-element-templates-json-schema/resources/schema.json",
+    "id": "empty",
+    "name": "Empty Template",
+    "appliesTo": [ "bpmn:Task" ],
+    "properties": []
+  },
+  {
+    "$schema": "https://unpkg.com/@camunda/zeebe-element-templates-json-schema/resources/schema.json",
+    "id": "hidden",
+    "name": "Template With hidden data",
+    "appliesTo": [ "bpmn:Task" ],
+    "properties": [
+        {
+            "label": "Response",
+            "value": "response",
+            "optional": true,
+            "type": "String",
+            "binding": {
+                "type": "zeebe:output",
+                "source": "= body"
+            },
+            "feel": "required"
+        },
+        {
+            "type": "Hidden",
+            "value": "{\"foo\": \"bar\"}",
+            "binding": {
+                "type": "zeebe:property",
+                "name": "camundaModeler:exampleOutputJson"
+            }
+        }
+    ]
+  },
+  {
+    "$schema": "https://unpkg.com/@camunda/zeebe-element-templates-json-schema/resources/schema.json",
+    "id": "visible",
+    "name": "Template With visible data",
+    "appliesTo": [ "bpmn:Task" ],
+    "properties": [
+        {
+            "label": "Response",
+            "value": "response",
+            "optional": true,
+            "type": "String",
+            "binding": {
+                "type": "zeebe:output",
+                "source": "= body"
+            },
+            "feel": "required"
+        },
+        {
+            "type": "Text",
+            "language": "JSON",
+            "value": "{}",
+            "binding": {
+                "type": "zeebe:property",
+                "name": "camundaModeler:exampleOutputJson"
+            }
+        }
+    ]
+  }
+]
