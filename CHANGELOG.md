@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to [`@bpmn-io/bpmn-js-json-data-provider`](https://github.com/bpmn-io/bpmn-js-json-data-provider) are documented here. We use [semantic versioning](http://semver.org/) for releases.
+All notable changes to [`@camunda/example-data-properties-provider`](https://github.com/bpmn-io/bpmn-js-json-data-provider) are documented here. We use [semantic versioning](http://semver.org/) for releases.
 
 ## Unreleased
 

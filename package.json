@@ -1,5 +1,5 @@
 {
-  "name": "@bpmn-io/bpmn-js-json-data-provider",
+  "name": "@camunda/example-data-properties-provider",
   "version": "0.0.0",
   "description": "",
   "main": "lib/index.js",
