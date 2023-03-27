@@ -1,4 +1,5 @@
 import TestContainer from 'mocha-test-container-support';
+import { act } from '@testing-library/preact';
 
 import {
   query as domQuery
@@ -18,16 +19,20 @@ import ZeebeModdle from 'zeebe-bpmn-moddle/resources/zeebe';
 import { ZeebeVariableResolverModule } from '@bpmn-io/variable-resolver';
 import VariableProviderModule from 'lib/';
 
-
-
-
 import Modeler from 'bpmn-js/lib/Modeler';
 
 import simpleXML from '../fixtures/simple.bpmn';
 import elementTemplatesXML from '../fixtures/elementTemplates.bpmn';
 import elementTemplates from '../fixtures/templates.json';
 
-import { setBpmnJS, clearBpmnJS, insertCoreStyles, enableLogging, inject } from '../TestHelper';
+import {
+  bootstrapPropertiesPanel,
+  clearBpmnJS,
+  enableLogging,
+  insertCoreStyles,
+  inject,
+  setBpmnJS
+} from '../TestHelper';
 
 const singleStart = window.__env__ && window.__env__.SINGLE_START;
 
@@ -150,7 +155,7 @@ describe('Integration', function() {
 
   describe('properties panel', function() {
 
-    beforeEach(() => createModeler(elementTemplatesXML, {
+    beforeEach(bootstrapPropertiesPanel(elementTemplatesXML, {
       additionalModules: [
         ...defaultModules,
         CloudElementTemplatesPropertiesProviderModule
@@ -159,13 +164,15 @@ describe('Integration', function() {
     }));
 
 
-    it('should display Group', inject(function(elementRegistry, selection) {
+    it('should display Group', inject(async function(elementRegistry, selection) {
 
       // given
       const task = elementRegistry.get('noTemplate');
 
       // when
-      selection.select(task);
+      await act(() => {
+        selection.select(task);
+      });
 
       // then
       const group = domQuery('[data-group-id="group-additionalDataGroup"]', container);
@@ -176,13 +183,15 @@ describe('Integration', function() {
     }));
 
 
-    it('should display group on applied template', inject(function(elementRegistry, selection) {
+    it('should display group on applied template', inject(async function(elementRegistry, selection) {
 
       // given
       const task = elementRegistry.get('emptyTemplate');
 
       // when
-      selection.select(task);
+      await act(() => {
+        selection.select(task);
+      });
 
       // then
       const group = domQuery('[data-group-id="group-additionalDataGroup"]', container);
@@ -193,14 +202,31 @@ describe('Integration', function() {
     }));
 
 
-    // TODO(@marstamm): implement in a follow-up
-    it.skip('should NOT display group when template has binding', inject(function(elementRegistry, selection) {
+    it('should NOT display group when template has binding (hidden)', inject(async function(elementRegistry, selection) {
 
       // given
-      const task = elementRegistry.get('emptyTemplate');
+      const task = elementRegistry.get('hiddenTemplate');
 
       // when
-      selection.select(task);
+      await act(() => {
+        selection.select(task);
+      });
+
+      // then
+      const group = domQuery('[data-group-id="group-additionalDataGroup"]', container);
+      expect(group).not.to.exist;
+    }));
+
+
+    it('should NOT display group when template has binding (visible)', inject(async function(elementRegistry, selection) {
+
+      // given
+      const task = elementRegistry.get('visibleTemplate');
+
+      // when
+      await act(() => {
+        selection.select(task);
+      });
 
       // then
       const group = domQuery('[data-group-id="group-additionalDataGroup"]', container);
