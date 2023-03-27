@@ -1,4 +1,4 @@
-# @bpmn-io/bpmn-js-json-data-provider
+# @camunda/example-data-properties-provider
 
 A variable provider that extracts variables from a zeebe:Property element.
 This Module includes a variable provider and a properties panel extension.
