@@ -1,7 +1,7 @@
 # @camunda/example-data-properties-provider
 
 A variable provider that extracts variables from a zeebe:Property element.
-This Module includes a variable provider and a properties panel extension.
+This Module includes a variable provider and a [properties panel](https://github.com/bpmn-io/bpmn-js-properties-panel) extension.
 
 ## Usage
 
