@@ -6,6 +6,8 @@ All notable changes to [`@camunda/example-data-properties-provider`](https://git
 
 ___Note:__ Yet to be released changes appear here._
 
+* `FIX`: hide group for element templates
+
 ## 1.0.0
 
 * `FEAT`: initial release
