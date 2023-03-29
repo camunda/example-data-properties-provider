@@ -183,7 +183,7 @@ describe('Integration', function() {
     }));
 
 
-    it('should display group on applied template', inject(async function(elementRegistry, selection) {
+    it('should NOT display group on applied template', inject(async function(elementRegistry, selection) {
 
       // given
       const task = elementRegistry.get('emptyTemplate');
@@ -195,10 +195,7 @@ describe('Integration', function() {
 
       // then
       const group = domQuery('[data-group-id="group-additionalDataGroup"]', container);
-      expect(group).to.exist;
-
-      // should be last
-      expect(group.nextElementSibling).not.to.exist;
+      expect(group).not.to.exist;
     }));
 
 
