@@ -135,18 +135,43 @@ describe('Integration', function() {
 
     beforeEach(() => createModeler(simpleXML));
 
-    it('should supply variables to variableResolver', inject(async function(elementRegistry, variableResolver) {
+    it('should scope variables to element', inject(async function(elementRegistry, variableResolver) {
 
       // given
-      const task = elementRegistry.get('ServiceTask_1');
+      const process = elementRegistry.get('Process_1');
 
       // when
-      const variables = await variableResolver.getVariablesForElement(task);
+      const variables = await variableResolver.getProcessVariables(process);
 
       // then
       expect(variables).to.variableEqual([
-        { name: 'output', type: 'Number' },
-        { name: 'startData', type: 'String' }
+        { name: 'output', type: 'Number', scope: 'ServiceTask_1' },
+        { name: 'startData', type: 'Context', scope: 'StartEvent_1' },
+        { name: 'mappedStartData', type: 'Context', scope: 'Process_1' },
+      ]);
+    }));
+
+
+    it('should keep info through mappings', inject(async function(elementRegistry, variableResolver) {
+
+      // given
+      const process = elementRegistry.get('Process_1');
+
+      // when
+      const variables = await variableResolver.getVariablesForElement(process);
+
+      // then
+      expect(variables).to.variableEqual([
+        {
+          name: 'mappedStartData',
+          type: 'Context',
+          entries: [
+            {
+              name: 'foobar',
+              type: 'Number'
+            }
+          ]
+        }
       ]);
     }));
 

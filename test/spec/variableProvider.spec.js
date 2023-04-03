@@ -66,7 +66,6 @@ describe('variable-provider', function() {
 
     const element = createElementWithVariables(variables);
 
-
     // when
     const result = provider.getVariables(element);
 
@@ -116,6 +115,28 @@ describe('variable-provider', function() {
             info: 'null'
           }
         ]
+      }
+    ]);
+  });
+
+
+  it('should scope variables to element', function() {
+
+    // given
+    const variables = JSON.stringify({
+      string: 'string',
+    });
+
+    const element = createElementWithVariables(variables);
+
+    // when
+    const result = provider.getVariables(element);
+
+    // then
+    expect(result).to.variableEqual([
+      {
+        name: 'string',
+        scope: element.id
       }
     ]);
   });
