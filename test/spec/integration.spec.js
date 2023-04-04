@@ -24,6 +24,8 @@ import Modeler from 'bpmn-js/lib/Modeler';
 import simpleXML from '../fixtures/simple.bpmn';
 import elementTemplatesXML from '../fixtures/elementTemplates.bpmn';
 import elementTemplates from '../fixtures/templates.json';
+import connectorTemplates from '../fixtures/connectors.json';
+
 
 import {
   bootstrapPropertiesPanel,
@@ -124,7 +126,7 @@ describe('Integration', function() {
           CloudElementTemplatesPropertiesProviderModule,
           ElementTemplateChooserModule
         ],
-        elementTemplates
+        elementTemplates: connectorTemplates
       });
 
     expect(result.error).to.not.exist;
