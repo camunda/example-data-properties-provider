@@ -15,11 +15,12 @@ import DataPropertiesProviderModule from 'lib/propertiesPanel';
 import dataGroupXML from '../fixtures/dataGroup.bpmn';
 
 import {
-  act
+  act, waitFor
 } from '@testing-library/preact';
 
 import {
-  query as domQuery
+  query as domQuery,
+  classes as domClasses
 } from 'min-dom';
 
 import { getExampleJson, getZeebeProperty, EXAMPLE_JSON_PROPERTY_NAME } from '../../lib/util/jsonDataUtil';
@@ -136,4 +137,102 @@ describe('Properties Panel - Data Group', function() {
 
   }));
 
+
+  describe('validation', function() {
+
+    it('should accept empty entry', inject(async function(selection, elementRegistry) {
+
+      // given
+      const task = elementRegistry.get('invalid');
+
+      await act(() => {
+        selection.select(task);
+      });
+
+      const entry = domQuery('.bio-properties-panel-entry', container);
+      const exampleInput = domQuery('textarea[name=exampleJson]', container);
+
+      // assume
+      await expectInvalid(entry);
+
+      // when
+      await act(() => {
+        changeInput(exampleInput, '');
+      });
+
+      // then
+      await expectValid(entry);
+    }));
+
+
+    it('should accept valid JSON', inject(async function(selection, elementRegistry) {
+
+      // given
+      const task = elementRegistry.get('invalid');
+
+      await act(() => {
+        selection.select(task);
+      });
+
+      const entry = domQuery('.bio-properties-panel-entry', container);
+      const exampleInput = domQuery('textarea[name=exampleJson]', container);
+
+      // assume
+      await expectInvalid(entry);
+
+      // when
+      await act(() => {
+        changeInput(exampleInput, '{"foo": "bar"}');
+      });
+
+      // then
+      await expectValid(entry);
+    }));
+
+
+    it('should reject invalid JSON', inject(async function(selection, elementRegistry) {
+
+      // given
+      const task = elementRegistry.get('empty');
+
+      await act(() => {
+        selection.select(task);
+      });
+
+      const entry = domQuery('.bio-properties-panel-entry', container);
+      const exampleInput = domQuery('textarea[name=exampleJson]', container);
+
+      // assume
+      await expectValid(entry);
+
+      // when
+      await act(() => {
+        changeInput(exampleInput, '{"foo": ');
+      });
+
+      // then
+      await expectInvalid(entry);
+
+    }));
+
+  });
 });
+
+
+// helpers //////////
+
+async function expectValid(node) {
+  await waitFor(() => {
+    expect(isValid(node)).to.be.true;
+  });
+}
+
+async function expectInvalid(node) {
+  await waitFor(() => {
+    expect(isValid(node)).to.be.false;
+  });
+}
+
+function isValid(node) {
+  return !domClasses(node).has('has-error');
+}
