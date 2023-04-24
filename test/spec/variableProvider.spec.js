@@ -90,7 +90,7 @@ describe('variable-provider', function() {
       {
         name: 'object',
         type: 'Context',
-        info: '{"nested":null}',
+        info: '{\n  "nested": null\n}',
         entries: [
           {
             name: 'nested',
@@ -108,7 +108,7 @@ describe('variable-provider', function() {
         name: 'array',
         type: 'List',
         isList: true,
-        info: '[{"nested":null}]',
+        info: '[\n  {\n    "nested": null\n  }\n]',
         entries: [
           {
             name: 'nested',
