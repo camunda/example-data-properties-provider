@@ -6,6 +6,10 @@ All notable changes to [`@camunda/example-data-properties-provider`](https://git
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.1.1
+
+* `FIX`: link to latest doc page ([#12](https://github.com/camunda/example-data-properties-provider/pull/12))
+
 ## 1.1.0
 
 * `FEAT`: validate JSON entry ([#3](https://github.com/camunda/example-data-properties-provider/issues/3))
