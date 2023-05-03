@@ -14,7 +14,7 @@ import {
   BpmnPropertiesProviderModule,
 } from 'bpmn-js-properties-panel';
 
-import JsonDataProvider from '@bpmn-io/bpmn-js-json-data-provider';
+import ExampleDataProvider from '@camunda/example-data-properties-provider';
 
 const modeler = new BpmnModeler({
   container: '#canvas',
@@ -24,7 +24,7 @@ const modeler = new BpmnModeler({
   additionalModules: [
     BpmnPropertiesPanelModule,
     BpmnPropertiesProviderModule,
-    JsonDataProvider 
+    ExampleDataProvider 
   ]
 });
 ```
