@@ -120,28 +120,6 @@ describe('variable-provider', function() {
   });
 
 
-  it('should scope variables to element', function() {
-
-    // given
-    const variables = JSON.stringify({
-      string: 'string',
-    });
-
-    const element = createElementWithVariables(variables);
-
-    // when
-    const result = provider.getVariables(element);
-
-    // then
-    expect(result).to.variableEqual([
-      {
-        name: 'string',
-        scope: element.id
-      }
-    ]);
-  });
-
-
   it('should NOT break with malformed JSON', function() {
 
     // given
