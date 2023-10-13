@@ -29,7 +29,7 @@ const modeler = new BpmnModeler({
 });
 ```
 
-## Development
+## Build and Run
 
 Clone the Project, then run
 
@@ -39,4 +39,5 @@ npm start
 ```
 
 ## License
+
 MIT
