@@ -72,17 +72,14 @@ export function bootstrapPropertiesPanel(diagram, options, locals) {
 
     // (3) attach properties panel
     const attachPropertiesPanel = inject(function(propertiesPanel, eventBus) {
-      const propertyPanelReady = new Promise((resolve) => {
-        eventBus.on('propertiesPanel.layoutChanged', resolve);
-      });
-
       PROPERTIES_PANEL_CONTAINER = document.createElement('div');
       PROPERTIES_PANEL_CONTAINER.classList.add('properties-container');
 
       container.appendChild(PROPERTIES_PANEL_CONTAINER);
 
       propertiesPanel.attachTo(PROPERTIES_PANEL_CONTAINER);
-      return propertyPanelReady;
+
+      return act(() => {});
     });
     await attachPropertiesPanel();
   };
