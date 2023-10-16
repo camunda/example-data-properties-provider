@@ -10,6 +10,9 @@
     "lint": "eslint .",
     "test": "karma start"
   },
+  "engines": {
+    "node": "*"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {
