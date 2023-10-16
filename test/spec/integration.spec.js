@@ -8,9 +8,12 @@ import {
 import {
   BpmnPropertiesPanelModule,
   BpmnPropertiesProviderModule,
-  ZeebePropertiesProviderModule,
-  CloudElementTemplatesPropertiesProviderModule
+  ZeebePropertiesProviderModule
 } from 'bpmn-js-properties-panel';
+
+import {
+  CloudElementTemplatesPropertiesProviderModule
+} from 'bpmn-js-element-templates';
 
 import ElementTemplateChooserModule from '@bpmn-io/element-template-chooser';
 import ZeebeBehaviorsModule from 'camunda-bpmn-js-behaviors/lib/camunda-cloud';
