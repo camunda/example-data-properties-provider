@@ -6,9 +6,13 @@ All notable changes to [`@camunda/example-data-properties-provider`](https://git
 
 ___Note:__ Yet to be released changes appear here._
 
+## 2.0.0
+
+* `DEPS`: update to `bpmn-js-properties-panel@6`
+
 ## 1.2.0
 
-* `REVERT`: don't scope example variables to current element ([#13](https://github.com/camunda/example-data-properties-provider/pull/13))
+* `FIX`: don't scope example variables to current element ([#13](https://github.com/camunda/example-data-properties-provider/pull/13))
 
 ## 1.1.1
 

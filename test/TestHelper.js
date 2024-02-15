@@ -72,17 +72,14 @@ export function bootstrapPropertiesPanel(diagram, options, locals) {
 
     // (3) attach properties panel
     const attachPropertiesPanel = inject(function(propertiesPanel, eventBus) {
-      const propertyPanelReady = new Promise((resolve) => {
-        eventBus.on('propertiesPanel.layoutChanged', resolve);
-      });
-
       PROPERTIES_PANEL_CONTAINER = document.createElement('div');
       PROPERTIES_PANEL_CONTAINER.classList.add('properties-container');
 
       container.appendChild(PROPERTIES_PANEL_CONTAINER);
 
       propertiesPanel.attachTo(PROPERTIES_PANEL_CONTAINER);
-      return propertyPanelReady;
+
+      return act(() => {});
     });
     await attachPropertiesPanel();
   };
@@ -102,12 +99,12 @@ export function insertCoreStyles() {
 
   insertCSS(
     'properties-panel.css',
-    require('@bpmn-io/properties-panel/assets/properties-panel.css').default
+    require('@bpmn-io/properties-panel/dist/assets/properties-panel.css').default
   );
 
   insertCSS(
     'element-templates.css',
-    require('bpmn-js-properties-panel/dist/assets/element-templates.css').default
+    require('bpmn-js-element-templates/dist/assets/element-templates.css').default
   );
 
   insertCSS(
