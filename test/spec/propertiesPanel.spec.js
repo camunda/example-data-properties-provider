@@ -215,31 +215,35 @@ describe('Properties Panel - Data Group', function() {
 
     }));
 
+    [ 'null', 'true', 'false', '1234', '""' ].forEach(value => {
 
-    it('should reject non-Object JSON', inject(async function(selection, elementRegistry) {
+      it(`should reject "${value}"`, inject(async function(selection, elementRegistry) {
 
-      // given
-      const task = elementRegistry.get('empty');
+        // given
+        const task = elementRegistry.get('empty');
 
-      await act(() => {
-        selection.select(task);
-      });
+        await act(() => {
+          selection.select(task);
+        });
 
-      const entry = domQuery('.bio-properties-panel-entry', container);
-      const exampleInput = domQuery('textarea[name=exampleJson]', container);
+        const entry = domQuery('.bio-properties-panel-entry', container);
+        const exampleInput = domQuery('textarea[name=exampleJson]', container);
 
-      // assume
-      await expectValid(entry);
+        // assume
+        await expectValid(entry);
 
-      // when
-      await act(() => {
-        changeInput(exampleInput, '1234');
-      });
+        // when
+        await act(() => {
+          changeInput(exampleInput, value);
+        });
 
-      // then
-      await expectInvalid(entry);
+        // then
+        await expectInvalid(entry);
 
-    }));
+      }));
+
+    });
+
 
   });
 
