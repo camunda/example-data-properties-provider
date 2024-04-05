@@ -6,6 +6,8 @@ All notable changes to [`@camunda/example-data-properties-provider`](https://git
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.2.1
+
 * `FIX`: validate JSON entry to be an object literal
 
 ## 1.2.0
