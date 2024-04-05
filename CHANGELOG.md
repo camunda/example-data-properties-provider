@@ -6,6 +6,8 @@ All notable changes to [`@camunda/example-data-properties-provider`](https://git
 
 ___Note:__ Yet to be released changes appear here._
 
+* `FIX`: validate JSON entry to be an object literal
+
 ## 1.2.0
 
 * `REVERT`: don't scope example variables to current element ([#13](https://github.com/camunda/example-data-properties-provider/pull/13))
