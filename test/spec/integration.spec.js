@@ -164,6 +164,9 @@ describe('Integration', function() {
         ...defaultModules,
         CloudElementTemplatesPropertiesProviderModule
       ],
+      moddleExtensions: {
+        zeebe: ZeebeModdle
+      },
       elementTemplates
     }));
 
