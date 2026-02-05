@@ -8,7 +8,7 @@ ___Note:__ Yet to be released changes appear here._
 
 ## 1.3.0
 
-* `FEAT`: move description to tooltip
+* `FEAT`: move description to tooltip ([#18](https://github.com/camunda/example-data-properties-provider/issues/18))
 * `DEPS`: update to `min-dash@5.0.0`
 
 ## 1.2.1
