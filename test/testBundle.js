@@ -1,4 +1,5 @@
-// @ts-ignore-next-line
+/* global require */
+
 const allTests = require.context('.', true, /.spec\.js$/);
 
 allTests.keys().forEach(allTests);

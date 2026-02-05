@@ -1,3 +1,5 @@
+/* global require */
+
 import TestContainer from 'mocha-test-container-support';
 
 import {
