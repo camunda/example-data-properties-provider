@@ -120,6 +120,7 @@ describe('Integration', function() {
     }
   }
 
+
   (singleStart ? it.only : it)('should start', async function() {
     const result = await createModeler(simpleXML,
       {
@@ -137,7 +138,10 @@ describe('Integration', function() {
 
   describe('variable provider', function() {
 
-    beforeEach(() => createModeler(simpleXML));
+    beforeEach(function() {
+      return createModeler(simpleXML);
+    });
+
 
     it('should supply variables to variableResolver', inject(async function(elementRegistry, variableResolver) {
 
