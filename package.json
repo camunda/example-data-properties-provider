@@ -36,7 +36,7 @@
     "bpmn-js-element-templates": "^2.19.0",
     "camunda-bpmn-js-behaviors": "^1.14.0",
     "chai": "^6.2.2",
-    "cross-env": "^7.0.3",
+    "cross-env": "^10.1.0",
     "eslint": "^8.57.0",
     "eslint-plugin-bpmn-io": "^1.0.0",
     "karma": "^6.4.3",
