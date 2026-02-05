@@ -91,9 +91,6 @@ describe('Integration', function() {
 
     const modeler = new BpmnJS({
       container: modelerContainer,
-      keyboard: {
-        bindTo: document
-      },
       additionalModules,
       moddleExtensions,
       propertiesPanel: {
