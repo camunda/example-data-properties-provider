@@ -1,6 +1,11 @@
 import TestContainer from 'mocha-test-container-support';
 
 import {
+  use as chaiUse,
+  expect
+} from 'chai';
+
+import {
   bootstrapBpmnJS,
   inject,
   insertCSS
@@ -9,9 +14,10 @@ import {
 import Modeler from 'bpmn-js/lib/Modeler';
 import { act, fireEvent } from '@testing-library/preact';
 
+
 let PROPERTIES_PANEL_CONTAINER;
 
-global.chai.use(function(chai, utils) {
+chaiUse(function(chai, utils) {
 
   utils.addMethod(chai.Assertion.prototype, 'variableEqual', function(comparison) {
     var variables = this._obj;
