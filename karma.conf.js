@@ -58,6 +58,10 @@ module.exports = function(karma) {
             ]
           },
           {
+            test: require.resolve('./test/globals.js'),
+            sideEffects: true
+          },
+          {
             test: /\.json$/,
             type: 'json'
           }
