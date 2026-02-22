@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0uo7yqr" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.44.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.1.0">
+  <bpmn:process id="Process_1" name="Process_1" isExecutable="true">
+    <bpmn:subProcess id="SubProcess_1" name="SubProcess_1">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:input target="local" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:startEvent id="StartEvent_1" name="StartEvent_1">
+        <bpmn:extensionElements>
+          <zeebe:properties>
+            <zeebe:property name="camundaModeler:exampleOutputJson" value="{&#10;  &#34;local.startData&#34;: &#34;foobar&#34; &#10;}" />
+          </zeebe:properties>
+        </bpmn:extensionElements>
+        <bpmn:outgoing>Flow_16gvdav</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:serviceTask id="ServiceTask_1" name="ServiceTask_1">
+        <bpmn:extensionElements>
+          <zeebe:properties>
+            <zeebe:property name="camundaModeler:exampleOutputJson" value="{ &#10;  &#34;output&#34;: 123&#10;}" />
+          </zeebe:properties>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_16gvdav</bpmn:incoming>
+        <bpmn:outgoing>Flow_1qedn0j</bpmn:outgoing>
+      </bpmn:serviceTask>
+      <bpmn:sequenceFlow id="Flow_16gvdav" sourceRef="StartEvent_1" targetRef="ServiceTask_1" />
+      <bpmn:serviceTask id="ServiceTask_2" name="ServiceTask_2">
+        <bpmn:extensionElements>
+          <zeebe:properties>
+            <zeebe:property name="camundaModeler:exampleOutputJson" value="{ &#10;  &#34;output&#34;: 123&#10;}" />
+          </zeebe:properties>
+          <zeebe:ioMapping>
+            <zeebe:output source="=output" target="local.output" />
+          </zeebe:ioMapping>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_1qedn0j</bpmn:incoming>
+        <bpmn:outgoing>Flow_02blw9g</bpmn:outgoing>
+      </bpmn:serviceTask>
+      <bpmn:sequenceFlow id="Flow_1qedn0j" sourceRef="ServiceTask_1" targetRef="ServiceTask_2" />
+      <bpmn:serviceTask id="ServiceTask_3" name="ServiceTask_3" zeebe:modelerTemplate="io.camunda.connectors.HttpJson.v2" zeebe:modelerTemplateVersion="9" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjAzMzUgOC45OTk5N0MxNy4wMzM1IDEzLjQ0NzUgMTMuNDI4MSAxNy4wNTI5IDguOTgwNjUgMTcuMDUyOUM0LjUzMzE2IDE3LjA1MjkgMC45Mjc3NjUgMTMuNDQ3NSAwLjkyNzc2NSA4Ljk5OTk3QzAuOTI3NzY1IDQuNTUyNDggNC41MzMxNiAwLjk0NzA4MyA4Ljk4MDY1IDAuOTQ3MDgzQzEzLjQyODEgMC45NDcwODMgMTcuMDMzNSA0LjU1MjQ4IDE3LjAzMzUgOC45OTk5N1oiIGZpbGw9IiM1MDU1NjIiLz4KPHBhdGggZD0iTTQuOTMxMjYgMTQuMTU3MUw2Ljc4MTA2IDMuNzE0NzFIMTAuMTM3NUMxMS4xOTE3IDMuNzE0NzEgMTEuOTgyNCAzLjk4MzIzIDEyLjUwOTUgNC41MjAyN0MxMy4wNDY1IDUuMDQ3MzYgMTMuMzE1IDUuNzMzNTggMTMuMzE1IDYuNTc4OTJDMTMuMzE1IDcuNDQ0MTQgMTMuMDcxNCA4LjE1NTIyIDEyLjU4NDEgOC43MTIxNUMxMi4xMDY3IDkuMjU5MTMgMTEuNDU1MyA5LjYzNzA1IDEwLjYyOTggOS44NDU5TDEyLjA2MTkgMTQuMTU3MUgxMC4zMzE1TDkuMDMzNjQgMTAuMDI0OUg3LjI0MzUxTDYuNTEyNTQgMTQuMTU3MUg0LjkzMTI2Wk03LjQ5NzExIDguNTkyODFIOS4yNDI0OEM5Ljk5ODMyIDguNTkyODEgMTAuNTkwMSA4LjQyMzc0IDExLjAxNzcgOC4wODU2MUMxMS40NTUzIDcuNzM3NTMgMTEuNjc0MSA3LjI2NTEzIDExLjY3NDEgNi42Njg0MkMxMS42NzQxIDYuMTkxMDYgMTEuNTI0OSA1LjgxODExIDExLjIyNjUgNS41NDk1OUMxMC45MjgyIDUuMjcxMTMgMTAuNDU1OCA1LjEzMTkgOS44MDkzNiA1LjEzMTlIOC4xMDg3NEw3LjQ5NzExIDguNTkyODFaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K">
+        <bpmn:extensionElements>
+          <zeebe:ioMapping>
+            <zeebe:input source="noAuth" target="authentication.type" />
+            <zeebe:input source="GET" target="method" />
+            <zeebe:input target="url" />
+            <zeebe:input source="=false" target="storeResponse" />
+            <zeebe:input source="20" target="connectionTimeoutInSeconds" />
+            <zeebe:input source="20" target="readTimeoutInSeconds" />
+          </zeebe:ioMapping>
+          <zeebe:taskDefinition type="io.camunda:http-json:1" retries="3" />
+          <zeebe:taskHeaders>
+            <zeebe:header key="resultVariable" value="restResponse" />
+            <zeebe:header key="retryBackoff" value="PT0S" />
+          </zeebe:taskHeaders>
+          <zeebe:properties>
+            <zeebe:property name="camundaModeler:exampleOutputJson" value="{&#10;  &#34;restResponse&#34;: {&#10;    &#34;status&#34;: 200,&#10;    &#34;headers&#34;: {&#10;      &#34;Content-Type&#34;: &#34;text/html&#34;&#10;    },&#10;    &#34;body&#34;: &#34;&#60;html&#62;...&#60;/html&#62;&#34;&#10;  }&#10;}" />
+          </zeebe:properties>
+        </bpmn:extensionElements>
+        <bpmn:incoming>Flow_02blw9g</bpmn:incoming>
+      </bpmn:serviceTask>
+      <bpmn:sequenceFlow id="Flow_02blw9g" sourceRef="ServiceTask_2" targetRef="ServiceTask_3" />
+    </bpmn:subProcess>
+    <bpmn:textAnnotation id="TextAnnotation_1nh0i5i">
+      <bpmn:text>"leaks" &lt;output&gt; to global scope</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_03aukyy">
+      <bpmn:text>transforms &lt;output&gt; to &lt;local.output&gt;, which makes it a variable scoped to the sub-process</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1ujwpxa">
+      <bpmn:text>declares &lt;local.startData&gt;  scoped to sub-process</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1y3wlm0">
+      <bpmn:text>Defines &lt;restResponse&gt; example data "leaks" to global scope</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1sftijw">
+      <bpmn:text>Has &lt;local = { startData, output }&gt; available as the data model.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1og2jh7" associationDirection="None" sourceRef="SubProcess_1" targetRef="TextAnnotation_1sftijw" />
+    <bpmn:association id="Association_0papcst" associationDirection="None" sourceRef="ServiceTask_1" targetRef="TextAnnotation_1nh0i5i" />
+    <bpmn:association id="Association_0nzrltp" associationDirection="None" sourceRef="ServiceTask_2" targetRef="TextAnnotation_03aukyy" />
+    <bpmn:association id="Association_0sk0eqs" associationDirection="None" sourceRef="StartEvent_1" targetRef="TextAnnotation_1ujwpxa" />
+    <bpmn:association id="Association_1xn9wyq" associationDirection="None" sourceRef="ServiceTask_3" targetRef="TextAnnotation_1y3wlm0" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+      <bpmndi:BPMNShape id="Activity_00lgtpi_di" bpmnElement="SubProcess_1" isExpanded="true">
+        <dc:Bounds x="160" y="200" width="640" height="180" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="219" y="272" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="205" y="243" width="64" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_10piuzo_di" bpmnElement="ServiceTask_1">
+        <dc:Bounds x="310" y="250" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_02gqobg" bpmnElement="ServiceTask_2">
+        <dc:Bounds x="460" y="250" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1w61jx5" bpmnElement="ServiceTask_3">
+        <dc:Bounds x="610" y="250" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_16gvdav_di" bpmnElement="Flow_16gvdav">
+        <di:waypoint x="255" y="290" />
+        <di:waypoint x="310" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qedn0j_di" bpmnElement="Flow_1qedn0j">
+        <di:waypoint x="410" y="290" />
+        <di:waypoint x="460" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02blw9g_di" bpmnElement="Flow_02blw9g">
+        <di:waypoint x="560" y="290" />
+        <di:waypoint x="610" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1xn9wyq_di" bpmnElement="Association_1xn9wyq">
+        <di:waypoint x="670" y="250" />
+        <di:waypoint x="698" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1og2jh7_di" bpmnElement="Association_1og2jh7" bioc:stroke="#205022" color:border-color="#205022">
+        <di:waypoint x="796" y="203" />
+        <di:waypoint x="860" y="174" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1nh0i5i_di" bpmnElement="TextAnnotation_1nh0i5i">
+        <dc:Bounds x="335" y="440" width="150" height="40" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_03aukyy_di" bpmnElement="TextAnnotation_03aukyy">
+        <dc:Bounds x="500" y="430" width="240" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1ujwpxa_di" bpmnElement="TextAnnotation_1ujwpxa">
+        <dc:Bounds x="130" y="435" width="170" height="50" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0papcst_di" bpmnElement="Association_0papcst">
+        <di:waypoint x="378" y="330" />
+        <di:waypoint x="428" y="440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0nzrltp_di" bpmnElement="Association_0nzrltp">
+        <di:waypoint x="520" y="330" />
+        <di:waypoint x="546" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0sk0eqs_di" bpmnElement="Association_0sk0eqs">
+        <di:waypoint x="231" y="307" />
+        <di:waypoint x="185" y="435" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1y3wlm0_di" bpmnElement="TextAnnotation_1y3wlm0">
+        <dc:Bounds x="660" y="80" width="170" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1sftijw_di" bpmnElement="TextAnnotation_1sftijw" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
+        <dc:Bounds x="860" y="140" width="210" height="50" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

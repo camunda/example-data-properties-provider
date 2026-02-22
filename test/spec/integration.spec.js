@@ -27,6 +27,7 @@ import VariableProviderModule from 'lib/';
 import Modeler from 'bpmn-js/lib/Modeler';
 
 import simpleXML from '../fixtures/simple.bpmn';
+import scopesXML from '../fixtures/scopes.bpmn';
 import elementTemplatesXML from '../fixtures/elementTemplates.bpmn';
 import elementTemplates from '../fixtures/templates.json';
 import connectorTemplates from '../fixtures/connectors.json';
@@ -42,6 +43,7 @@ import {
 } from '../TestHelper';
 
 const singleStart = window.__env__ && window.__env__.SINGLE_START;
+
 
 describe('Integration', function() {
 
@@ -136,7 +138,7 @@ describe('Integration', function() {
   });
 
 
-  describe('variable provider', function() {
+  describe('variable provider - simple', function() {
 
     beforeEach(function() {
       return createModeler(simpleXML);
@@ -155,6 +157,58 @@ describe('Integration', function() {
       expect(variables).to.variableEqual([
         { name: 'output', type: 'Number' },
         { name: 'startData', type: 'String' }
+      ]);
+    }));
+
+  });
+
+
+  describe('variable provider - scopes', function() {
+
+    beforeEach(function() {
+      return createModeler(scopesXML);
+    });
+
+
+    it('should attach variables scoped', inject(async function(elementRegistry, variableResolver) {
+
+      // given
+      const task = elementRegistry.get('SubProcess_1');
+
+      // when
+      const variables = await variableResolver.getVariablesForElement(task);
+
+      // then
+      expect(variables).to.variableEqual([
+        { name: 'output', type: 'Number', scope: 'Process_1', origin: [ 'ServiceTask_1' ] },
+        {
+          name: 'local',
+          scope: 'SubProcess_1',
+          entries: [
+            { name: 'startData', scope: 'SubProcess_1', origin: [ 'StartEvent_1' ] },
+            { name: 'output', scope: 'SubProcess_1', origin: [ 'ServiceTask_2' ] }
+          ]
+        },
+        {
+          name: 'restResponse',
+          entries: [
+            { name: 'status', type: 'Number' },
+            {
+              name: 'headers',
+              info: '{\n  "Content-Type": "text/html"\n}',
+              type: 'Context',
+              entries: [
+                {
+                  name: 'Content-Type',
+                  info: '"text/html"',
+                  type: 'String'
+                }
+              ]
+            },
+            { name: 'body' }
+          ],
+          scope: 'Process_1'
+        }
       ]);
     }));
 
