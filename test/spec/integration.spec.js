@@ -29,6 +29,7 @@ import Modeler from 'bpmn-js/lib/Modeler';
 import simpleXML from '../fixtures/simple.bpmn';
 import scopesXML from '../fixtures/scopes.bpmn';
 import elementTemplatesXML from '../fixtures/elementTemplates.bpmn';
+import restConnectorXML from '../fixtures/restConnector.bpmn';
 import elementTemplates from '../fixtures/templates.json';
 import connectorTemplates from '../fixtures/connectors.json';
 
@@ -209,6 +210,48 @@ describe('Integration', function() {
           ],
           scope: 'Process_1'
         }
+      ]);
+    }));
+
+  });
+
+
+  describe('variable provider - rest connector', function() {
+
+    beforeEach(function() {
+      return createModeler(restConnectorXML);
+    });
+
+
+    it('should supply variables to local scope', inject(async function(elementRegistry, variableResolver) {
+
+      // given
+      const task = elementRegistry.get('RestTask_1');
+
+      // when
+      const variables = await variableResolver.getVariablesForElement(task);
+
+      // then
+      expect(variables).to.variableInclude([
+        { name: 'response', type: 'Context' }
+      ]);
+    }));
+
+
+    it('should provide varibles to process scope', inject(async function(elementRegistry, variableResolver) {
+
+      // given
+      const rootElement = elementRegistry.get('Process_1');
+
+      // when
+      const variables = await variableResolver.getVariablesForElement(rootElement);
+
+      // then
+      // no deep integration / merging with connectors variable provider
+      expect(variables).to.variableEqual([
+        { name: 'response', type: 'Context' },
+        { name: 'customStatus', type: 'Null' },
+        { name: 'mappedResponse', type: 'Null' }
       ]);
     }));
 
