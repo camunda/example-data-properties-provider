@@ -33,7 +33,7 @@
     "babel-loader": "^10.0.0",
     "babel-plugin-istanbul": "^7.0.1",
     "bpmn-js": "^18.12.1",
-    "bpmn-js-element-templates": "^2.20.1",
+    "bpmn-js-element-templates": "^2.22.0",
     "camunda-bpmn-js-behaviors": "^1.14.1",
     "chai": "^6.2.2",
     "cross-env": "^10.1.0",
