@@ -52,7 +52,7 @@
     "npm-run-all2": "^8.0.4",
     "puppeteer": "^24.37.1",
     "raw-loader": "^4.0.2",
-    "webpack": "^5.105.0",
+    "webpack": "^5.105.3",
     "zeebe-bpmn-moddle": "^1.12.0"
   }
 }
