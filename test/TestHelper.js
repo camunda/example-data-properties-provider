@@ -9,7 +9,7 @@ import {
 } from 'bpmn-js/test/helper';
 
 import Modeler from 'bpmn-js/lib/Modeler';
-import { act, fireEvent } from '@testing-library/preact';
+import { act } from '@testing-library/preact';
 
 
 let PROPERTIES_PANEL_CONTAINER;
@@ -89,10 +89,6 @@ export function insertCoreStyles() {
     require('bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css').default
   );
 
-}
-
-export function changeInput(input, value) {
-  fireEvent.input(input, { target: { value } });
 }
 
 

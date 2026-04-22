@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import TestContainer from 'mocha-test-container-support';
 
-import { bootstrapPropertiesPanel, changeInput, inject } from '../TestHelper';
+import { bootstrapPropertiesPanel, inject } from '../TestHelper';
 
 import { BpmnPropertiesPanelModule } from 'bpmn-js-properties-panel';
 
@@ -24,6 +24,8 @@ import {
   query as domQuery,
   classes as domClasses
 } from 'min-dom';
+
+import { EditorView } from '@codemirror/view';
 
 import { getExampleJson, getZeebeProperty, EXAMPLE_JSON_PROPERTY_NAME } from '../../lib/util/jsonDataUtil';
 import { getBusinessObject } from 'bpmn-js/lib/util/ModelUtil';
@@ -73,12 +75,9 @@ describe('Properties Panel - Data Group', function() {
       selection.select(task);
     });
 
-    const exampleInput = domQuery('textarea[name=exampleJson]', container);
-
     // then
-    expect(exampleInput).to.exist;
-
-    expect(exampleInput.value).to.equal('{"foo": "bar"}');
+    const cmEditor = await waitForEditor(container);
+    expect(getEditorValue(cmEditor)).to.equal('{"foo": "bar"}');
   }));
 
 
@@ -90,14 +89,15 @@ describe('Properties Panel - Data Group', function() {
     await act(() => {
       selection.select(task);
     });
-    const exampleInput = domQuery('textarea[name=exampleJson]', container);
+
+    const cmEditor = await waitForEditor(container);
 
     // assume
-    expect(exampleInput.value).to.equal('');
+    expect(getEditorValue(cmEditor)).to.equal('');
 
     // when
     await act(() => {
-      changeInput(exampleInput, '{"foo": "bar"}');
+      setEditorValue(cmEditor, '{"foo": "bar"}');
     });
 
     // then
@@ -115,10 +115,11 @@ describe('Properties Panel - Data Group', function() {
     await act(() => {
       selection.select(task);
     });
-    const exampleInput = domQuery('textarea[name=exampleJson]', container);
+
+    const cmEditor = await waitForEditor(container);
 
     // assume
-    expect(exampleInput.value).to.equal('{"foo": "bar"}');
+    expect(getEditorValue(cmEditor)).to.equal('{"foo": "bar"}');
 
     // when
     const newValue = '{"foo": "bar", "bar": "baz"}';
@@ -151,15 +152,15 @@ describe('Properties Panel - Data Group', function() {
         selection.select(task);
       });
 
+      const cmEditor = await waitForEditor(container);
       const entry = domQuery('.bio-properties-panel-entry', container);
-      const exampleInput = domQuery('textarea[name=exampleJson]', container);
 
       // assume
       await expectInvalid(entry);
 
       // when
       await act(() => {
-        changeInput(exampleInput, '');
+        setEditorValue(cmEditor, '');
       });
 
       // then
@@ -176,15 +177,15 @@ describe('Properties Panel - Data Group', function() {
         selection.select(task);
       });
 
+      const cmEditor = await waitForEditor(container);
       const entry = domQuery('.bio-properties-panel-entry', container);
-      const exampleInput = domQuery('textarea[name=exampleJson]', container);
 
       // assume
       await expectInvalid(entry);
 
       // when
       await act(() => {
-        changeInput(exampleInput, '{"foo": "bar"}');
+        setEditorValue(cmEditor, '{"foo": "bar"}');
       });
 
       // then
@@ -201,15 +202,15 @@ describe('Properties Panel - Data Group', function() {
         selection.select(task);
       });
 
+      const cmEditor = await waitForEditor(container);
       const entry = domQuery('.bio-properties-panel-entry', container);
-      const exampleInput = domQuery('textarea[name=exampleJson]', container);
 
       // assume
       await expectValid(entry);
 
       // when
       await act(() => {
-        changeInput(exampleInput, '{"foo": ');
+        setEditorValue(cmEditor, '{"foo": ');
       });
 
       // then
@@ -228,15 +229,15 @@ describe('Properties Panel - Data Group', function() {
           selection.select(task);
         });
 
+        const cmEditor = await waitForEditor(container);
         const entry = domQuery('.bio-properties-panel-entry', container);
-        const exampleInput = domQuery('textarea[name=exampleJson]', container);
 
         // assume
         await expectValid(entry);
 
         // when
         await act(() => {
-          changeInput(exampleInput, value);
+          setEditorValue(cmEditor, value);
         });
 
         // then
@@ -253,6 +254,35 @@ describe('Properties Panel - Data Group', function() {
 
 
 // helpers //////////
+
+async function waitForEditor(container) {
+  let cmEditor;
+  await waitFor(() => {
+    cmEditor = domQuery('.cm-editor', container);
+    expect(cmEditor).to.exist;
+  });
+  return cmEditor;
+}
+
+function getEditorView(cmEditorElement) {
+  return EditorView.findFromDOM(cmEditorElement);
+}
+
+function getEditorValue(cmEditorElement) {
+  const view = getEditorView(cmEditorElement);
+  return view ? view.state.doc.toString() : '';
+}
+
+function setEditorValue(cmEditorElement, value) {
+  const view = getEditorView(cmEditorElement);
+  view.dispatch({
+    changes: {
+      from: 0,
+      to: view.state.doc.length,
+      insert: value
+    }
+  });
+}
 
 async function expectValid(node) {
   await waitFor(() => {
