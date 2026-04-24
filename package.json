@@ -29,8 +29,8 @@
     "@bpmn-io/element-template-chooser": "^2.1.0",
     "@bpmn-io/properties-panel": "^3.41.2",
     "@bpmn-io/variable-resolver": "^3.0.0",
-    "@testing-library/preact": "^3.2.3",
-    "babel-loader": "^10.0.0",
+    "@testing-library/preact": "^3.2.4",
+    "babel-loader": "^10.1.1",
     "babel-plugin-istanbul": "^7.0.1",
     "bpmn-js": "^18.15.0",
     "bpmn-js-element-templates": "^2.24.0",
@@ -50,9 +50,9 @@
     "mocha": "^11.7.5",
     "mocha-test-container-support": "^0.2.0",
     "npm-run-all2": "^8.0.4",
-    "puppeteer": "^24.37.1",
+    "puppeteer": "^24.42.0",
     "raw-loader": "^4.0.2",
-    "webpack": "^5.105.3",
+    "webpack": "^5.106.2",
     "zeebe-bpmn-moddle": "^1.13.0"
   }
 }
