@@ -6,6 +6,11 @@ All notable changes to [`@camunda/example-data-properties-provider`](https://git
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.4.0
+
+* `FEAT`: use JSON editor instead of `TextArea` as 'Example data' property input ([#22](https://github.com/camunda/example-data-properties-provider/pull/22))
+* `DEPS`: update to `@bpmn-io/properties-panel@3.41.2`
+
 ## 1.3.0
 
 * `FEAT`: move description to tooltip ([#18](https://github.com/camunda/example-data-properties-provider/issues/18))
