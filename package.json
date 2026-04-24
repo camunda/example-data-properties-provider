@@ -27,13 +27,13 @@
   },
   "devDependencies": {
     "@bpmn-io/element-template-chooser": "^2.1.0",
-    "@bpmn-io/properties-panel": "^3.40.2",
-    "@bpmn-io/variable-resolver": "^2.0.0",
+    "@bpmn-io/properties-panel": "^3.41.2",
+    "@bpmn-io/variable-resolver": "^3.0.0",
     "@testing-library/preact": "^3.2.3",
     "babel-loader": "^10.0.0",
     "babel-plugin-istanbul": "^7.0.1",
-    "bpmn-js": "^18.12.1",
-    "bpmn-js-element-templates": "^2.22.0",
+    "bpmn-js": "^18.15.0",
+    "bpmn-js-element-templates": "^2.24.0",
     "camunda-bpmn-js-behaviors": "^1.14.1",
     "chai": "^6.2.2",
     "cross-env": "^10.1.0",
@@ -53,6 +53,6 @@
     "puppeteer": "^24.37.1",
     "raw-loader": "^4.0.2",
     "webpack": "^5.105.3",
-    "zeebe-bpmn-moddle": "^1.12.0"
+    "zeebe-bpmn-moddle": "^1.13.0"
   }
 }
