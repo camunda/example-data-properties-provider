@@ -6,6 +6,10 @@ All notable changes to [`@camunda/example-data-properties-provider`](https://git
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.5.0
+
+* `FEAT`: improve example data documentation ([#24](https://github.com/camunda/example-data-properties-provider/pull/24))
+
 ## 1.4.0
 
 * `FEAT`: use JSON editor instead of `TextArea` as 'Example data' property input ([#22](https://github.com/camunda/example-data-properties-provider/pull/22))
