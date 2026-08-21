@@ -10,6 +10,10 @@
     "lint": "eslint .",
     "test": "karma start"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camunda/example-data-properties-provider.git"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {
