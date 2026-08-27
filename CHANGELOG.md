@@ -8,7 +8,7 @@ ___Note:__ Yet to be released changes appear here._
 
 ## 1.5.1
 
-__Re-release with repository link in package.__
+_Re-release with repository link in package._
 
 ## 1.5.0
 
