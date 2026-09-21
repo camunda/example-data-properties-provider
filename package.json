@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@bpmn-io/element-template-chooser": "^3.0.0",
-    "@bpmn-io/properties-panel": "^3.41.2",
+    "@bpmn-io/properties-panel": "^3.55.0",
     "@bpmn-io/variable-resolver": "^3.0.0",
     "@codemirror/view": "^6.28.1",
     "@testing-library/preact": "^3.2.4",
@@ -39,6 +39,7 @@
     "babel-plugin-istanbul": "^7.0.1",
     "bpmn-js": "^18.15.0",
     "bpmn-js-element-templates": "^2.24.0",
+    "bpmn-js-properties-panel": "^5.65.0",
     "camunda-bpmn-js-behaviors": "^1.14.1",
     "chai": "^6.2.2",
     "cross-env": "^10.1.0",
