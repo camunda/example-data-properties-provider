@@ -50,9 +50,7 @@ module.exports = function(karma) {
         rules: [
           {
             test: [ /\.css$/i, /\.bpmn$/i ],
-            use: [
-              'raw-loader'
-            ]
+            type: 'asset/source'
           },
           {
             test: require.resolve('./test/globals.js'),
