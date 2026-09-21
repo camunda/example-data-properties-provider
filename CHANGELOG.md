@@ -6,6 +6,8 @@ All notable changes to [`@camunda/example-data-properties-provider`](https://git
 
 ___Note:__ Yet to be released changes appear here._
 
+* `DEPS`: update to `min-dash@5.1.0`
+
 ## 1.5.1
 
 _Re-release with repository link in package._
