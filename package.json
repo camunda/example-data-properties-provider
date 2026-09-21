@@ -33,7 +33,7 @@
     "@bpmn-io/element-template-chooser": "^3.0.0",
     "@bpmn-io/properties-panel": "^3.55.0",
     "@bpmn-io/variable-resolver": "^3.3.0",
-    "@codemirror/view": "^6.28.1",
+    "@codemirror/view": "^6.43.11",
     "@testing-library/preact": "^3.2.4",
     "babel-loader": "^10.1.1",
     "babel-plugin-istanbul": "^7.0.1",
