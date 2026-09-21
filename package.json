@@ -36,7 +36,7 @@
     "@codemirror/view": "^6.43.11",
     "@testing-library/preact": "^3.2.4",
     "babel-loader": "^10.1.1",
-    "babel-plugin-istanbul": "^7.0.1",
+    "babel-plugin-istanbul": "^8.0.0",
     "bpmn-js": "^18.28.0",
     "bpmn-js-element-templates": "^2.36.3",
     "bpmn-js-properties-panel": "^5.65.0",
